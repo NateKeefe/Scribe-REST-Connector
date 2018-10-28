@@ -1,0 +1,532 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Eloqua Bulk"
+  },
+  "host": "secure.p02.eloqua.com",
+  "basePath": "/api/bulk/2.0",
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/contacts/exports": {
+      "post": {
+        "description": "",
+        "summary": "Step 1",
+        "tags": [
+          "Bulk"
+        ],
+        "operationId": "ContactExports",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post Contact Export"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Post Contact Export Response"
+            }
+          },
+          "400": {
+            "description": "There was a validation error",
+            "schema": {
+              "$ref": "#/definitions/Post Contact Export 400"
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found"
+          },
+          "410": {
+            "description": "The requested resource is no longer available"
+          }
+        }
+      }
+    },
+    "/syncs": {
+      "get": {
+        "description": "",
+        "summary": "Optional Get",
+        "tags": [
+          "Bulk"
+        ],
+        "operationId": "GetSyncs",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "orderBy",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Get Syncs 200"
+            }
+          },
+          "400": {
+            "description": "There was a validation error"
+          },
+          "404": {
+            "description": "The requested resource was not found"
+          },
+          "410": {
+            "description": "The requested resource is no longer available"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "summary": "Step 2",
+        "tags": [
+          "Bulk"
+        ],
+        "operationId": "SyncsPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post Sync"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Post Sync Response"
+            }
+          },
+          "400": {
+            "description": "There was a missing reference",
+            "schema": {
+              "$ref": "#/definitions/Post Sync 400"
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found"
+          },
+          "410": {
+            "description": "The requested resource is no longer available"
+          }
+        }
+      }
+    },
+    "/syncs/{id}": {
+      "get": {
+        "description": "",
+        "summary": "Step 3",
+        "tags": [
+          "Bulk"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Get syncs"
+            }
+          },
+          "400": {
+            "description": "There was a validation error"
+          },
+          "404": {
+            "description": "The requested resource was not found"
+          },
+          "410": {
+            "description": "The requested resource is no longer available"
+          }
+        }
+      }
+    },
+    "/syncs/{id}/data": {
+      "get": {
+        "description": "",
+        "summary": "Step 4",
+        "tags": [
+          "Bulk"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Get syncs data"
+            }
+          },
+          "400": {
+            "description": "There was a validation error"
+          },
+          "404": {
+            "description": "The requested resource was not found"
+          },
+          "410": {
+            "description": "The requested resource is no longer available"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Get Syncs 200": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Get Syncs Items"
+          }
+        },
+        "totalResults": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "hasMore": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Get Syncs Items": {
+      "type": "object",
+      "properties": {
+        "syncedInstanceUri": {
+          "type": "string"
+        },
+        "syncStartedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "syncEndedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "Post Contact Export": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "object",
+          "properties": {
+            "EmailAddress": {
+              "type": "string"
+            },
+            "Subscription": {
+              "type": "string"
+            },
+            "InstanceID": {
+              "type": "string"
+            }
+          }
+        },
+        "filter": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "Post Contact Export Response": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "object",
+          "properties": {
+            "EmailAddress": {
+              "type": "string"
+            },
+            "Subscription": {
+              "type": "string"
+            },
+            "InstanceID": {
+              "type": "string"
+            }
+          }
+        },
+        "filter": {
+          "type": "string"
+        },
+        "dataRetentionDuration": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Post Contact Export 400": {
+      "type": "object",
+      "properties": {
+        "failures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "constraint": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Post Sync": {
+      "type": "object",
+      "properties": {
+        "syncedInstanceUri": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
+    "Post Sync Response": {
+      "type": "object",
+      "properties": {
+        "syncedInstanceUri": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "Post Sync 400": {
+      "type": "object",
+      "properties": {
+        "faiures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "constraint": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Get syncs": {
+      "type": "object",
+      "properties": {
+        "syncedInstanceUri": {
+          "type": "string"
+        },
+        "syncStartedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "syncEndedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "Get syncs data": {
+      "type": "object",
+      "properties": {
+        "totalResults": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "count": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasMore": {
+          "description": "",
+          "type": "boolean"
+        },
+        "items": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Item"
+          }
+        }
+      }
+    },
+    "Item": {
+      "title": "Item",
+      "type": "object",
+      "properties": {
+        "EmailAddress": {
+          "description": "",
+          "type": "string"
+        },
+        "Subscription": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

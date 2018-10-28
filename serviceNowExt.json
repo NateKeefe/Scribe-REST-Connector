@@ -1,0 +1,225 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "ServiceNow",
+    "description": "REST Connector Sample for ServiceNow"
+  },
+  "host": "dev54645.service-now.com",
+  "basePath": "/api/now/table/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/incident": {
+      "get": {
+        "tags": [
+          "Incidents"
+        ],
+        "description": "BusinessWorks Endpoint",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/incidents"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "incidents": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/incident"
+          }
+        }
+      }
+    },
+    "incident": {
+      "type": "object",
+      "properties": {
+        "parent": {
+          "type": "string"
+        },
+        "made_sla": {
+          "type": "string"
+        },
+        "caused_by": {
+          "type": "string"
+        },
+        "watch_list": {
+          "type": "string"
+        },
+        "upon_reject": {
+          "type": "string"
+        },
+        "sys_updated_on": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "child_incidents": {
+          "type": "string"
+        },
+        "hold_reason": {
+          "type": "string"
+        },
+        "approval_history": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "resolved_by": {
+          "type": "object",
+          "$ref": "#/definitions/references"
+        },
+        "sys_updated_by": {
+          "type": "string"
+        },
+        "opened_by": {
+          "type": "object",
+          "$ref": "#/definitions/references"
+        }
+      }
+    },
+    "references": {
+      "type": "object",
+      "properties": {
+        "link": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "types": {
+      "type": "object",
+      "properties": {
+        "string": {
+          "type": "string"
+        },
+        "int": {
+          "type": "integer"
+        },
+        "datetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "password": {
+          "type": "string",
+          "format": "password"
+        },
+        "byte": {
+          "type": "string",
+          "format": "byte"
+        },
+        "binary": {
+          "type": "string",
+          "format": "binary"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ssn": {
+          "type": "string",
+          "pattern": "^\\d{3}-\\d{2}-\\d{4}$"
+        },
+        "bool": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "number"
+        },
+        "listOfString": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "listOfInt": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "object": {
+          "type": "object",
+          "$ref": "#/definitions/typesObject"
+        },
+        "objectOfObject": {
+          "type": "object",
+          "properties": {
+            "object": {
+              "type": "object",
+              "$ref": "#/definitions/typesObjectOfObject"
+            }
+          }
+        },
+        "arrayOfObjects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/typesArrayOfObjects"
+          }
+        }
+      }
+    },
+    "typesObject": {
+      "type": "object",
+      "properties": {
+        "innerProp": {
+          "type": "string"
+        }
+      }
+    },
+    "typesObjectOfObject": {
+      "type": "object",
+      "properties": {
+        "innerProp": {
+          "type": "string"
+        }
+      }
+    },
+    "typesArrayOfObjects": {
+      "type": "object",
+      "properties": {
+        "innerProp": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

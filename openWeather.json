@@ -1,0 +1,180 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1",
+    "title": "Sample",
+    "description": "REST Connector Sample"
+  },
+  "host": "api.openweathermap.org",
+  "basePath": "/data/2.5/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/weather": {
+      "get": {
+        "tags": [
+          "Open Weather"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/weather"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "weather": {
+      "type": "object",
+      "properties": {
+        "coord": {
+          "type": "object",
+          "$ref": "#/definitions/weatherCoords"
+        },
+        "weather": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/weatherWeather"
+          }
+        },
+        "base": {
+          "type": "string"
+        },
+        "main": {
+          "type": "object",
+          "$ref": "#/definitions/weatherMain"
+        },
+        "visbility": {
+          "type": "number"
+        },
+        "wind": {
+          "type": "object",
+          "$ref": "#/definitions/weatherWind"
+        },
+        "clouds": {
+          "type": "object",
+          "$ref": "#/definitions/weatherClouds"
+        },
+        "dt": {
+          "type": "number"
+        },
+        "sys": {
+          "type": "object",
+          "$ref": "#/definitions/weatherSys"
+        },
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "cod": {
+          "type": "number"
+        }
+      }
+    },
+    "weatherCoords": {
+      "type": "object",
+      "properties": {
+        "lon": {
+          "type": "number"
+        },
+        "lat": {
+          "type": "number"
+        }
+      }
+    },
+    "weatherWeather": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "main": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      }
+    },
+    "weatherMain": {
+      "type": "object",
+      "properties": {
+        "temp": {
+          "type": "number"
+        },
+        "pressure": {
+          "type": "number"
+        },
+        "humidity": {
+          "type": "number"
+        },
+        "temp_min": {
+          "type": "number"
+        },
+        "temp_max": {
+          "type": "number"
+        }
+      }
+    },
+    "weatherWind": {
+      "type": "object",
+      "properties": {
+        "speed": {
+          "type": "number"
+        }
+      }
+    },
+    "weatherClouds": {
+      "type": "object",
+      "properties": {
+        "all": {
+          "type": "number"
+        }
+      }
+    },
+    "weatherSys": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "number"
+        },
+        "id": {
+          "type": "number"
+        },
+        "message": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        },
+        "sunrise": {
+          "type": "number"
+        },
+        "sunset": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}
