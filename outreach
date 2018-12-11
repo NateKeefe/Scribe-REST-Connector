@@ -1,0 +1,1095 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Outreach.IO REST Connector Sample",
+    "description": "Sample of working with Outreach API: https://api.outreach.io/api/v2/docs"
+  },
+  "host": "api.outreach.io",
+  "basePath": "/api/v2/",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/vnd.api+json"
+  ],
+  "consumes": [
+    "application/vnd.api+json"
+  ],
+  "paths": {
+    "/prospects": {
+      "get": {
+        "tags": [
+          "Outreach Prospects"
+        ],
+        "summary": "A descriptor of persons.",
+        "parameters": [
+          {
+            "name": "filter[emails]",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "email"
+          },
+          {
+            "name": "filter[createdAt]",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "filter[engagedAt]",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "filter[engagedScore]",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "filter[externalSource]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter[firstName]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter[githubUsername]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page[offset]",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "page[limit]",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/prospect"
+            }
+          }
+        }
+      }
+    },
+    "/prospects/{id}": {
+      "get": {
+        "tags": [
+          "Outreach Prospects"
+        ],
+        "summary": "Descriptor of a spcific person.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/prospect"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Outreach Prospects"
+        ],
+        "summary": "Destroys a spcific person.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/prospect"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Outreach Prospects"
+        ],
+        "summary": "Updates a spcific person.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/prospect"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/prospect"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Outreach Prospects"
+        ],
+        "summary": "Creates a person.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/prospect"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/prospect"
+            }
+          }
+        }
+      }
+    },
+    "/{endpoint}": {
+      "put": {
+        "tags": [
+          "Sample Types"
+        ],
+        "description": "Requestb.in Endpoint",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "endpoint",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "default": "1akk0e21"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/types"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Sample Types"
+        ],
+        "description": "Requestb.in Endpoint",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "endpoint",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "default": "1akk0e21"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/types"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Sample Types"
+        ],
+        "description": "Requestb.in Endpoint",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "endpoint",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "default": "1akk0e21"
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "33.4460484"
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "112.066279"
+          },
+          {
+            "name": "starttime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "2018-10-23T23:00:00-07:00"
+          },
+          {
+            "name": "endtime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "2018-10-23T23:30:00-07:00"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/types"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "prospect": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/prospectData"
+          }
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "prospectData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "attributes": {
+          "type": "object",
+          "$ref": "#/definitions/prospectAttributes"
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "account": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/related"
+                }
+              }
+            },
+            "calls": {
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "object",
+                  "$ref": "#/definitions/links"
+                }
+              }
+            },
+            "creator": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/related"
+                }
+              }
+            },
+            "mailings": {
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "object",
+                  "$ref": "#/definitions/links"
+                }
+              }
+            },
+            "opportunities": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/related"
+                  }
+                },
+                "links": {
+                  "type": "object",
+                  "$ref": "#/definitions/links"
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "owner": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/related"
+                }
+              }
+            },
+            "persona": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/related"
+                }
+              }
+            },
+            "phoneNumbers": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/related"
+                  }
+                },
+                "links": {
+                  "type": "object",
+                  "$ref": "#/definitions/links"
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "sequenceStates": {
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "object",
+                  "$ref": "#/definitions/links"
+                }
+              }
+            },
+            "stage": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/related"
+                }
+              }
+            },
+            "tasks": {
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "object",
+                  "$ref": "#/definitions/links"
+                }
+              }
+            },
+            "updater": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/related"
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "related": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "number"
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "related": {
+          "type": "string"
+        }
+      }
+    },
+    "prospectAttributes": {
+      "type": "object",
+      "properties": {
+        "addedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "addressCity": {
+          "type": "string"
+        },
+        "addressCountry": {
+          "type": "string"
+        },
+        "addressState": {
+          "type": "string"
+        },
+        "addressStreet": {
+          "type": "string"
+        },
+        "addressStreet2": {
+          "type": "string"
+        },
+        "addressZip": {
+          "type": "string"
+        },
+        "angelListUrl": {
+          "type": "string"
+        },
+        "availableAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "callsOptStatus": {
+          "type": "string"
+        },
+        "callsOptedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "campaignName": {
+          "type": "string"
+        },
+        "clickCount": {
+          "type": "number",
+          "readOnly": true
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "custom1": {
+          "type": "string"
+        },
+        "custom10": {
+          "type": "string"
+        },
+        "custom11": {
+          "type": "string"
+        },
+        "custom12": {
+          "type": "string"
+        },
+        "custom13": {
+          "type": "string"
+        },
+        "custom14": {
+          "type": "string"
+        },
+        "custom15": {
+          "type": "string"
+        },
+        "custom16": {
+          "type": "string"
+        },
+        "custom17": {
+          "type": "string"
+        },
+        "custom18": {
+          "type": "string"
+        },
+        "custom19": {
+          "type": "string"
+        },
+        "custom2": {
+          "type": "string"
+        },
+        "custom20": {
+          "type": "string"
+        },
+        "custom21": {
+          "type": "string"
+        },
+        "custom22": {
+          "type": "string"
+        },
+        "custom23": {
+          "type": "string"
+        },
+        "custom24": {
+          "type": "string"
+        },
+        "custom25": {
+          "type": "string"
+        },
+        "custom26": {
+          "type": "string"
+        },
+        "custom27": {
+          "type": "string"
+        },
+        "custom28": {
+          "type": "string"
+        },
+        "custom29": {
+          "type": "string"
+        },
+        "custom3": {
+          "type": "string"
+        },
+        "custom30": {
+          "type": "string"
+        },
+        "custom31": {
+          "type": "string"
+        },
+        "custom32": {
+          "type": "string"
+        },
+        "custom33": {
+          "type": "string"
+        },
+        "custom34": {
+          "type": "string"
+        },
+        "custom35": {
+          "type": "string"
+        },
+        "custom36": {
+          "type": "string"
+        },
+        "custom37": {
+          "type": "string"
+        },
+        "custom38": {
+          "type": "string"
+        },
+        "custom39": {
+          "type": "string"
+        },
+        "custom4": {
+          "type": "string"
+        },
+        "custom40": {
+          "type": "string"
+        },
+        "custom41": {
+          "type": "string"
+        },
+        "custom42": {
+          "type": "string"
+        },
+        "custom43": {
+          "type": "string"
+        },
+        "custom44": {
+          "type": "string"
+        },
+        "custom45": {
+          "type": "string"
+        },
+        "custom46": {
+          "type": "string"
+        },
+        "custom47": {
+          "type": "string"
+        },
+        "custom48": {
+          "type": "string"
+        },
+        "custom49": {
+          "type": "string"
+        },
+        "custom5": {
+          "type": "string"
+        },
+        "custom50": {
+          "type": "string"
+        },
+        "custom51": {
+          "type": "string"
+        },
+        "custom52": {
+          "type": "string"
+        },
+        "custom53": {
+          "type": "string"
+        },
+        "custom54": {
+          "type": "string"
+        },
+        "custom55": {
+          "type": "string"
+        },
+        "custom6": {
+          "type": "string"
+        },
+        "custom7": {
+          "type": "string"
+        },
+        "custom8": {
+          "type": "string"
+        },
+        "custom9": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "degree": {
+          "type": "string"
+        },
+        "emails": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "emailsOptStatus": {
+          "type": "string"
+        },
+        "emailsOptedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "engagedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "engagedScore": {
+          "type": "number",
+          "readOnly": true
+        },
+        "eventName": {
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "externalOwner": {
+          "type": "string"
+        },
+        "externalSource": {
+          "type": "string",
+          "readOnly": true
+        },
+        "facebookUrl": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "githubUrl": {
+          "type": "string"
+        },
+        "githubUsername": {
+          "type": "string"
+        },
+        "googlePlusUrl": {
+          "type": "string"
+        },
+        "graduationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "homePhones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "jobStartDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "linkedInConnections": {
+          "type": "number"
+        },
+        "linkedInId": {
+          "type": "string"
+        },
+        "linkedInSlug": {
+          "type": "string",
+          "readOnly": true
+        },
+        "linkedInUrl": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "mobilePhones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "occupation": {
+          "type": "string"
+        },
+        "openCount": {
+          "type": "number",
+          "readOnly": true
+        },
+        "optedOut": {
+          "type": "boolean"
+        },
+        "optedOutAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "otherPhones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "personalNote1": {
+          "type": "string"
+        },
+        "personalNote2": {
+          "type": "string"
+        },
+        "preferredContact": {
+          "type": "string"
+        },
+        "quoraUrl": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "replyCount": {
+          "type": "number",
+          "readOnly": true
+        },
+        "school": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        },
+        "smsOptStatus": {
+          "type": "string"
+        },
+        "smsOptedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "source": {
+          "type": "string"
+        },
+        "specialties": {
+          "type": "string"
+        },
+        "stackOverflowId": {
+          "type": "string"
+        },
+        "stackOverflowUrl": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "timeZoneIana": {
+          "type": "string",
+          "readOnly": true
+        },
+        "timeZoneInferred": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "touchedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "twitterUrl": {
+          "type": "string"
+        },
+        "twitterUsername": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "voipPhones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "websiteUrl1": {
+          "type": "string"
+        },
+        "websiteUrl2": {
+          "type": "string"
+        },
+        "websiteUrl3": {
+          "type": "string"
+        },
+        "workPhones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "types": {
+      "type": "object",
+      "properties": {
+        "string": {
+          "type": "string"
+        },
+        "int": {
+          "type": "integer"
+        },
+        "datetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "password": {
+          "type": "string",
+          "format": "password"
+        },
+        "byte": {
+          "type": "string",
+          "format": "byte"
+        },
+        "binary": {
+          "type": "string",
+          "format": "binary"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ssn": {
+          "type": "string",
+          "pattern": "^\\d{3}-\\d{2}-\\d{4}$"
+        },
+        "bool": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "number"
+        },
+        "listOfString": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "listOfInt": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "object": {
+          "type": "object",
+          "$ref": "#/definitions/typesObject"
+        },
+        "objectOfObject": {
+          "type": "object",
+          "properties": {
+            "object": {
+              "type": "object",
+              "$ref": "#/definitions/typesObjectOfObject"
+            }
+          }
+        },
+        "arrayOfObjects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/typesArrayOfObjects"
+          }
+        }
+      }
+    },
+    "typesObject": {
+      "type": "object",
+      "properties": {
+        "innerProp": {
+          "type": "string"
+        }
+      }
+    },
+    "typesObjectOfObject": {
+      "type": "object",
+      "properties": {
+        "innerProp": {
+          "type": "string"
+        }
+      }
+    },
+    "typesArrayOfObjects": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
